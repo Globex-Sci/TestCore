@@ -11,7 +11,7 @@ using TestCore.Models;
 namespace TestCore.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Sync")]
+    [Route("api/blocks")]
     public class BlocksController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,14 +21,14 @@ namespace TestCore.Controllers
             _context = context;
         }
 
-        // GET: api/Sync
+        // GET: api/blocks
         [HttpGet]
         public IEnumerable<Block> GetBlock()
         {
             return _context.Blocks;
         }
 
-        // GET: api/Sync/5
+        // GET: api/blocks/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBlock([FromRoute] string id)
         {
@@ -47,7 +47,7 @@ namespace TestCore.Controllers
             return Ok(block);
         }
 
-        // PUT: api/Sync/5
+        // PUT: api/blocks/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBlock([FromRoute] string id, [FromBody] Block block)
         {
@@ -82,7 +82,7 @@ namespace TestCore.Controllers
             return NoContent();
         }
 
-        // POST: api/Sync
+        // POST: api/blocks
         [HttpPost]
         public async Task<IActionResult> PostBlock([FromBody] Block block)
         {
@@ -97,7 +97,7 @@ namespace TestCore.Controllers
             return CreatedAtAction("GetBlock", new { id = block.Hash }, block);
         }
 
-        // DELETE: api/Sync/5
+        // DELETE: api/blocks/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBlock([FromRoute] string id)
         {
