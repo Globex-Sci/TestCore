@@ -59,6 +59,14 @@ namespace TestCore.Controllers
             _context.Articles.Add(article);
             await _context.SaveChangesAsync();
 
+            await _context.Blocks.AddAsync(new Block
+            {
+                Hash = Guid.NewGuid().ToString(),
+                PreviousBlockHash = Guid.NewGuid().ToString()
+            });
+
+            await _context.SaveChangesAsync();
+
             return CreatedAtAction("GetArticle", new { id = article.ArticleHash}, article);
         }
 

@@ -22,7 +22,7 @@ namespace TestCore.Controllers
         // GET: Articles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Articles.ToListAsync());
+            return View(await _context.Articles.Where(a => a.IsReview == false).ToListAsync());
         }
 
         // GET: Articles/Details/5
@@ -60,6 +60,15 @@ namespace TestCore.Controllers
             {
                 _context.Add(article);
                 await _context.SaveChangesAsync();
+
+                await _context.Blocks.AddAsync(new Block
+                {
+                    Hash = Guid.NewGuid().ToString(),
+                    PreviousBlockHash = Guid.NewGuid().ToString()
+                });
+
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(article);
