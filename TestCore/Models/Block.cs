@@ -11,9 +11,6 @@ namespace TestCore.Models
         [Key]
         public string Hash { get; set; }
         public string PreviousBlockHash { get; set; }
-
-
-
-
+        public Article Article { get; set; }
     }
 }
