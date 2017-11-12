@@ -19,7 +19,6 @@ namespace TestCore.Data
             {
                 await dbContext.Blocks.AddAsync(new Block
                 {
-                    Article = null,
                     Hash = "1",
                     PreviousBlockHash = "0"
                 });
