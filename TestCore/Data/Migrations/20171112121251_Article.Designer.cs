@@ -11,9 +11,10 @@ using TestCore.Data;
 namespace TestCore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171112121251_Article")]
+    partial class Article
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,9 +203,13 @@ namespace TestCore.Data.Migrations
                     b.Property<string>("Hash")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("ArticleHash");
+
                     b.Property<string>("PreviousBlockHash");
 
                     b.HasKey("Hash");
+
+                    b.HasIndex("ArticleHash");
 
                     b.ToTable("Blocks");
                 });
@@ -252,6 +257,13 @@ namespace TestCore.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TestCore.Models.Block", b =>
+                {
+                    b.HasOne("TestCore.Models.Article", "Article")
+                        .WithMany()
+                        .HasForeignKey("ArticleHash");
                 });
 #pragma warning restore 612, 618
         }
