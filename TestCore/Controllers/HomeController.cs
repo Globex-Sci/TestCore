@@ -11,9 +11,15 @@ namespace TestCore.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index(IOptions<AppSettings> settings)
+        private IOptions<AppSettings> _settings;
+
+        public HomeController(IOptions<AppSettings> settings)
         {
-            ViewBag.MyNodeNAme = settings.Value.MyNodeName;
+            _settings = settings;
+        }
+        public IActionResult Index()
+        {
+            ViewBag.MyNodeName = _settings.Value.MyNodeName;
             return View();
         }
 
