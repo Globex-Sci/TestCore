@@ -8,16 +8,17 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 using TestCore.Data;
 
-namespace TestCore.Data.Migrations
+namespace TestCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171112100749_Blocks")]
-    partial class Blocks
+    [Migration("20171112140023_ReCreateMigrations")]
+    partial class ReCreateMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -194,7 +195,7 @@ namespace TestCore.Data.Migrations
 
                     b.HasKey("ArticleHash");
 
-                    b.ToTable("Article");
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("TestCore.Models.Block", b =>
@@ -202,13 +203,9 @@ namespace TestCore.Data.Migrations
                     b.Property<string>("Hash")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ArticleHash");
-
                     b.Property<string>("PreviousBlockHash");
 
                     b.HasKey("Hash");
-
-                    b.HasIndex("ArticleHash");
 
                     b.ToTable("Blocks");
                 });
@@ -256,13 +253,6 @@ namespace TestCore.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TestCore.Models.Block", b =>
-                {
-                    b.HasOne("TestCore.Models.Article", "Article")
-                        .WithMany()
-                        .HasForeignKey("ArticleHash");
                 });
 #pragma warning restore 612, 618
         }

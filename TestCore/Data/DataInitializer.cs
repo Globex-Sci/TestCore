@@ -11,7 +11,7 @@ namespace TestCore.Data
         public static async Task Seed(ApplicationDbContext serviceProvider)
         {
             await SeedGenesisBlock(serviceProvider);
-            //await SeedArticles(serviceProvider);
+            await SeedArticles(serviceProvider);
         }
 
         private static async Task SeedGenesisBlock(ApplicationDbContext dbContext)
