@@ -1,0 +1,48 @@
+﻿@model TestCore.Models.Article
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsReview)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsReview)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReviewedArticleHash)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReviewedArticleHash)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReviewedArticleMark)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReviewedArticleMark)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ArticleHash">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

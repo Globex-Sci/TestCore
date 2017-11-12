@@ -23,6 +23,7 @@ namespace TestCore.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<TestCore.Models.Block> Blocks { get; set; }
+        public DbSet<Block> Blocks { get; set; }
+        public DbSet<Article> Articles { get; set; }
     }
 }
