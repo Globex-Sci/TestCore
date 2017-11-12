@@ -12,20 +12,11 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ArticleHash)
+            </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Text)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IsReview)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReviewedArticleHash)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReviewedArticleMark)
                 </th>
             <th></th>
         </tr>
@@ -34,20 +25,12 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.ArticleHash)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Text)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsReview)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReviewedArticleHash)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReviewedArticleMark)
-            </td>
+           
             <td>
                 <a asp-action="Details" asp-route-id="@item.ArticleHash">Details</a> 
             </td>
