@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TestCore.Data;
 using TestCore.Models;
 using TestCore.Services;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace TestCore
 {
@@ -36,6 +37,8 @@ namespace TestCore
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+            services.Configure<AppSettings>(Configuration);
+
             services.AddMvc();
         }
 
@@ -53,6 +56,11 @@ namespace TestCore
             }
 
             app.UseStaticFiles();
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
 
             app.UseAuthentication();
 
