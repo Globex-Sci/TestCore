@@ -12,18 +12,18 @@ namespace TestCore.Controllers
 {
     [Produces("application/json")]
     [Route("api/blocks")]
-    public class BlocksController : Controller
+    public class BlocksApiController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public BlocksController(ApplicationDbContext context)
+        public BlocksApiController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // GET: api/blocks
         [HttpGet]
-        public IEnumerable<Block> GetBlock()
+        public IEnumerable<Block> GetBlocks()
         {
             return _context.Blocks;
         }
